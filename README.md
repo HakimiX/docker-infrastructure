@@ -25,3 +25,5 @@ store the number in the Redis Cache Store.
 5. The Worker watches Redis for new indices that show up. Anytime a new index shows up in Redis, 
 the Worker is going to pull that value out and calculate the Fibonacci value for it and store the calculated
 value back in Redis.
+> Over the top complicated solution for calculating a Fibonacci number. 
+> The purpose is to implement a multicontainer deployment. 
