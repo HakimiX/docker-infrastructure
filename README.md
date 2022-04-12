@@ -14,8 +14,8 @@
 ### Overview
 ![](resources/images/overview.png)
 
-### Flow 
-![](resources/images/frontend-flow.png)
+### Flow
+![](resources/images/flow.png)
 
 1. The user writes a number and clicks the submit button.
 2. The React application makes an Ajax request to the backend Express server.
