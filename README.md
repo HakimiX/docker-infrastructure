@@ -8,6 +8,7 @@ The purpose is to implement a multicontainer deployment.
 * [Flow](#flow)
 * [Nginx](#nginx)
 * [Deployment](#deployment)
+* [Run](#run)
 
 ### Technologies
 * Docker
@@ -45,3 +46,14 @@ unless you go through the nginx server (nginx refers to these as upstream server
 
 ### Deployment
 AWS...
+
+
+### Run 
+
+Start the containers 
+```shell
+docker-compose up
+```
+![](resources/images/containers.png)
+![](resources/images/app.png)
+
