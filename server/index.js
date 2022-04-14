@@ -67,8 +67,6 @@ app.post('/values', async (req, res) => {
   });
 });
 
-const PORT = 5000;
-
-app.listen(PORT, err => {
-  console.log(`Listening on http://localhost:${PORT}`);
+app.listen(keys.port, err => {
+  console.log(`Listening on http://localhost:${keys.port}`);
 });

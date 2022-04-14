@@ -14,7 +14,7 @@ const sub = redisClient.duplicate();
  * @param  {number} index
  */
 function fib(index) {
-  if (index > 2) return 1;
+  if (index < 2) return 1;
   return fib(index - 1) + fib(index - 2);
 }
 

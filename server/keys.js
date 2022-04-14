@@ -1,5 +1,6 @@
 // Connection keys
 module.exports = {
+  port: process.env.PORT,
   // Redis
   redisHost: process.env.REDIS_HOST,
   redisPort: process.env.REDIS_PORT,
