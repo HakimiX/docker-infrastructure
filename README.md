@@ -40,7 +40,7 @@ service to route the request to. The nginx routing is based on the url path:
 * `/`: the request is routed to the React server.
 * `/api`: the request is routed to the Express server.
 
-The React server and Express server is "behind" nginx and cannot be accessed
+The React server and Express server is "behind" the nginx server and cannot be accessed
 unless you go through the nginx server (nginx refers to these as upstream servers).
 
 ![](resources/images/nginx-routing.png)
