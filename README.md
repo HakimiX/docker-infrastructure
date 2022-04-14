@@ -9,6 +9,7 @@ The purpose is to implement a multi container deployment.
 * [Nginx](#nginx)
 * [Deployment](#deployment)
 * [Run](#run)
+* [CI/CD](#cicd)
 
 ### Technologies
 * Docker
@@ -43,6 +44,18 @@ The React server and Express server is "behind" nginx and cannot be accessed
 unless you go through the nginx server (nginx refers to these as upstream servers).
 
 ![](resources/images/nginx-routing.png)
+
+## CI/CD 
+1. Push code to GitHub.
+2. Travis CI
+   * Automatically pull the repository. 
+   * Builds a test image and tests code. 
+   * Builds PROD images. 
+   * Pushes built PROD images to Docker Hub. 
+   * Pushes project to AWS Elastic Beanstalk (EB) 
+3. AWS EB pull images from Docker Hub and Deploys. 
+
+![](resources/images/ci-cd.png)
 
 ### Deployment
 AWS...
