@@ -7,7 +7,7 @@ The purpose is to implement a multi container deployment.
 * [Overview](#overview)
 * [Flow](#flow)
 * [Nginx](#nginx)
-* [Deployment](#deployment)
+* [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
 * [Local Development](#local-development)
 * [CI/CD](#cicd)
 
@@ -57,10 +57,10 @@ unless you go through the nginx server (nginx refers to these as upstream server
 
 ![](resources/images/ci-cd.png)
 
-Travis CI will automatically run the CI/CD pipeline whenver code is merged to master. 
+Travis CI will automatically pull the repository and run the CI/CD pipeline whenver code is merged to master. 
 ![](resources/images/travis-ci.png)
 
-### Deployment
+### AWS Elastic Beanstalk
 ![](resources/images/deployment.png)
 
 ### Local development 
