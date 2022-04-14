@@ -51,7 +51,7 @@ unless you go through the nginx server (nginx refers to these as upstream server
    * Automatically pull the repository. 
    * Builds a test image and tests code. 
    * Builds PROD images. 
-   * Pushes built PROD images to Docker Hub. 
+   * Pushes PROD images to Docker Hub. 
    * Pushes project to AWS Elastic Beanstalk (EB) 
 3. AWS EB pull images from Docker Hub and Deploys. 
 
