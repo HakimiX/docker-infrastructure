@@ -16,7 +16,7 @@ after_success:
   - docker build -t hakimixx/docker-infra-server ./server
   - docker build -t hakimixx/docker-infra-worker ./worker
   # Login to Docker Hub (using Travis CI environment variables)
-  - echo "$DOCKER_PASSWOR" | docker login -u "$DOCKER_ID" --password--stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password--stdin
   # Push the images to Docker Hub
   - docker push hakimixx/docker-infra-client
   - docker push hakimixx/docker-infra-nginx
