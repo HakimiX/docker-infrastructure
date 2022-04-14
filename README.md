@@ -50,8 +50,8 @@ unless you go through the nginx server (nginx refers to these as upstream server
 ![](resources/images/nginx-routing.png)
 
 ### Terraform 
-Terraform allows us to manage infrastructure as code (IaC) rather tha using a graphical
-user interface. Terraform allows us to manage the infrastructure in a safe, consistent and 
+Terraform allows us to manage infrastructure as code (IaC) rather tham using a graphical
+user interface. It allows us to manage the infrastructure in a safe, consistent and 
 repeatable way by defining resource configurations that we can version and reuse.
 ```shell
 # Initialize the working directory so Terraform can run the configuration
