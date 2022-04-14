@@ -5,6 +5,9 @@ The purpose is to implement a multicontainer deployment.
 
 * [Technologies](#technologies)
 * [Overview](#overview)
+* [Flow](#flow)
+* [Nginx](#nginx)
+* [Deployment](#deployment)
 
 ### Technologies
 * Docker
@@ -38,6 +41,7 @@ service to route the request to. The nginx routing is based on the url path:
 The React server and Express server is "behind" nginx and cannot be accessed
 unless you go through the nginx server (nginx refers to these as upstream servers).
 
-
 ![](resources/images/nginx-routing.png)
 
+### Deployment
+AWS...
