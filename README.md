@@ -7,9 +7,10 @@ The purpose is to implement a multi container deployment.
 * [Overview](#overview)
 * [Flow](#flow)
 * [Nginx](#nginx)
+* [Terraform](#terraform)
 * [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
 * [Local Development](#local-development)
-* [CI/CD](#cicd)
+* [Travis CI](#travis-ci)
 
 ### Technologies
 * Docker
@@ -18,6 +19,9 @@ The purpose is to implement a multi container deployment.
 * Nginx
 * Redis
 * Postgres
+* Terraform
+* Travis CI
+* AWS
 
 ### Overview
 ![](resources/images/overview.png)
@@ -45,11 +49,29 @@ unless you go through the nginx server (nginx refers to these as upstream server
 
 ![](resources/images/nginx-routing.png)
 
-## CI/CD 
+### Terraform 
+Terraform allows us to manage infrastructure as code (IaC) rather tha using a graphical
+user interface. Terraform allows us to manage the infrastructure in a safe, consistent and 
+repeatable way by defining resource configurations that we can version and reuse.
+```shell
+# Initialize the working directory so Terraform can run the configuration
+terraform init
+
+# Validate the configurations
+terraform validate
+
+# Preview any changes before you apply them 
+terraform plan 
+
+# Execute the changes (create, update or destroy resources)
+terraform apply
+```
+
+## Travis CI 
 1. Push code to GitHub.
 2. Travis CI
    * Automatically pull the repository. 
-   * Builds a test image and tests code. 
+   * Builds a test image and runs tests. 
    * Builds PROD images. 
    * Pushes PROD images to Docker Hub. 
    * Pushes project to AWS Elastic Beanstalk (EB) 
