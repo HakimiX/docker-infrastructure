@@ -1,9 +1,9 @@
-const keys = require('./keys');
+const env = require('./config');
 const redis = require('redis');
 
 const redisClient = redis.createClient({
-  host: keys.redisHost,
-  port: keys.redisPort,
+  host: env.redisHost,
+  port: env.redisPort,
   retry_strategy: () => 1000 // if connection is lost, attempt to reconnect once every 1000ms
 });
 

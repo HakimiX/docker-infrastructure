@@ -3,18 +3,18 @@ const redis = require('redis');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const keys = require("./keys");
+const env = require("./config");
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 const pgClient = new Pool({
-  user: keys.pgUser,
-  host: keys.pgHost,
-  database: keys.pgDatabase,
-  password: keys.pgPassword,
-  port: keys.pgPort
+  user: env.pgUser,
+  host: env.pgHost,
+  database: env.pgDatabase,
+  password: env.pgPassword,
+  port: env.pgPort
 });
 
 pgClient.on('error', () => console.log('Lost Postgres connection'));
@@ -27,8 +27,8 @@ pgClient.on("connect", (client) => {
 });
 
 const redisClient = redis.createClient({
-  host: keys.redisHost,
-  port: keys.redisPort,
+  host: env.redisHost,
+  port: env.redisPort,
   retry_strategy: () => 1000 // if connection is lost, attempt to reconnect once every 1000ms
 });
 
@@ -67,6 +67,6 @@ app.post('/values', async (req, res) => {
   });
 });
 
-app.listen(keys.port, err => {
-  console.log(`Listening on http://localhost:${keys.port}`);
+app.listen(env.port, err => {
+  console.log(`Listening on http://localhost:${env.port}`);
 });
