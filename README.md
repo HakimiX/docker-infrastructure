@@ -57,6 +57,9 @@ unless you go through the nginx server (nginx refers to these as upstream server
 
 ![](resources/images/ci-cd.png)
 
+Travis CI will automatically run the CI/CD pipeline whenver code is merged to master. 
+![](resources/images/travis-ci.png)
+
 ### Deployment
 ![](resources/images/deployment.png)
 
