@@ -1,7 +1,7 @@
-# Advanced Docker Infrastructure
+# Multi Container Infrastructure
 
 This is an over the top complicated solution for calculating a Fibonacci number.
-The purpose is to implement a multicontainer deployment.
+The purpose is to implement a multi container deployment.
 
 * [Technologies](#technologies)
 * [Overview](#overview)
