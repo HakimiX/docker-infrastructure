@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+# build test image
+before_install:
+  - docker build -t hakimixx/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true hakimixx/react-test npm test
+
+# build PROD images
+after_success:
+  - docker build -t hakimixx/docker-infra-client ./client
+  - docker build -t hakimixx/docker-infra-nginx ./nginx
+  - docker build -t hakimixx/docker-infra-server ./server
+  - docker build -t hakimixx/docker-infra-worker ./worker
+  # Login to Docker Hub (using Travis CI environment variables)
+  - echo "$DOCKER_PASSWOR" | docker login -u "$DOCKER_ID" --password--stdin
+  # Push the images to Docker Hub
+  - docker push hakimixx/docker-infra-client
+  - docker push hakimixx/docker-infra-nginx
+  - docker push hakimixx/docker-infra-server
+  - docker push hakimixx/docker-infra-worker
