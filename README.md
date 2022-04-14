@@ -8,7 +8,7 @@ The purpose is to implement a multi container deployment.
 * [Flow](#flow)
 * [Nginx](#nginx)
 * [Deployment](#deployment)
-* [Run](#run)
+* [Local Development](#local-development)
 * [CI/CD](#cicd)
 
 ### Technologies
@@ -58,10 +58,9 @@ unless you go through the nginx server (nginx refers to these as upstream server
 ![](resources/images/ci-cd.png)
 
 ### Deployment
-AWS...
+![](resources/images/deployment.png)
 
-
-### Run 
+### Local development 
 
 Start the containers 
 ```shell
