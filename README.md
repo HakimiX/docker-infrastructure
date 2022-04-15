@@ -109,10 +109,14 @@ docker push hakimixx/docker-infra-client:v1
 
 ### Kubernetes
 
+#### Overview
+![](resources/images/k8s-overview.png)
+
+#### Deployment 
+AWS EKS
+
 #### Local Development
 Local development using Minikube or Docker Desktop 
-![](resources/images/docker-desktop-k8s.png)
-
 ```shell
 # Change context (or minikube)
 kubectx docker-desktop
