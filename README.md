@@ -123,7 +123,7 @@ kubectl apply -f kubernetes
 # Verify that the resouces are created successfully
 kubectl get all
 
-# Navigate to the nodePort 
+# Navigate to the nodePort (defined in the service)
 http://localhost:31515
 
 # For minikube you have to get the minikube ip first
