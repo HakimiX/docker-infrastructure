@@ -8,12 +8,12 @@ The purpose is to implement a multi container deployment.
 * [Flow](#flow)
 * [Nginx](#nginx)
 * [Terraform](#terraform)
+* [Travis CI](#travis-ci)
 * [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
-* [Kubernetes](#kubernetes)
 * [Local Development](#local-development)
   * [Docker Compose](#docker-compose)
-  * [minikube](#minikube)
-* [Travis CI](#travis-ci)
+  * [Docker](#docker)
+* [Kubernetes](#kubernetes)
 
 ### Technologies
 * Docker
@@ -88,9 +88,6 @@ Travis CI will automatically pull the repository and run the CI/CD pipeline when
 ### AWS Elastic Beanstalk
 ![](resources/images/deployment.png)
 
-### Kubernetes
-TODO...
-
 ### Local development
 #### Docker Compose
 Start the containers 
@@ -100,9 +97,49 @@ docker-compose up
 ![](resources/images/containers.png)
 ![](resources/images/app.png)
 
-#### Minikube
-Create the kubernetes resources
+#### Docker
+Building and pushing images locally
 ```shell
-kubectl apply -f kubernetes
+# Build image 
+docker build -t hakimixx/docker-infra-client:v1 client
+
+# Push image
+docker push hakimixx/docker-infra-client:v1
 ```
-TODO...
+
+### Kubernetes
+
+#### Local Development
+Local development using Minikube or Docker Desktop 
+![](resources/images/docker-desktop-k8s.png)
+
+```shell
+# Change context (or minikube)
+kubectx docker-desktop
+
+# Apply kubernetes resources
+kubectl apply -f kubernetes
+
+# Verify that the resouces are created successfully
+kubectl get all
+
+# Navigate to the nodePort 
+http://localhost:31515
+
+# For minikube you have to get the minikube ip first
+minikube ip 
+
+# Navigate to the nodePort
+http://194.148.19.2:31515
+```
+
+![](resources/images/cluster.png)
+
+Updating deployment image: 
+```shell
+# Command 
+kubectl set image <object-type>/<object-name> <container-name>=<new image to use>
+
+# Example
+kubectl set image deployment/client-deployment client=hakimixx/docker-infra-client:v1
+```
