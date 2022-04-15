@@ -10,10 +10,10 @@ The purpose is to implement a multi container deployment.
 * [Terraform](#terraform)
 * [Travis CI](#travis-ci)
 * [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
-* [Local Development](#local-development)
+* [Docker](#docker)
   * [Docker Compose](#docker-compose)
-  * [Docker](#docker)
 * [Kubernetes](#kubernetes)
+  * [Local Developmet](#local-development)
 
 ### Technologies
 * Docker
@@ -69,6 +69,7 @@ terraform plan
 # Execute the changes (create, update or destroy resources)
 terraform apply
 ```
+work in progress...
 
 ## Travis CI 
 1. Push code to GitHub.
@@ -88,7 +89,7 @@ Travis CI will automatically pull the repository and run the CI/CD pipeline when
 ### AWS Elastic Beanstalk
 ![](resources/images/deployment.png)
 
-### Local development
+### Docker 
 #### Docker Compose
 Start the containers 
 ```shell
@@ -97,7 +98,6 @@ docker-compose up
 ![](resources/images/containers.png)
 ![](resources/images/app.png)
 
-#### Docker
 Building and pushing images locally
 ```shell
 # Build image 
