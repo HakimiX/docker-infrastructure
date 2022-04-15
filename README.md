@@ -9,7 +9,10 @@ The purpose is to implement a multi container deployment.
 * [Nginx](#nginx)
 * [Terraform](#terraform)
 * [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
+* [Kubernetes](#kubernetes)
 * [Local Development](#local-development)
+  * [Docker Compose](#docker-compose)
+  * [minikube](#minikube)
 * [Travis CI](#travis-ci)
 
 ### Technologies
@@ -85,8 +88,11 @@ Travis CI will automatically pull the repository and run the CI/CD pipeline when
 ### AWS Elastic Beanstalk
 ![](resources/images/deployment.png)
 
-### Local development 
+### Kubernetes
+TODO...
 
+### Local development
+#### Docker Compose
 Start the containers 
 ```shell
 docker-compose up
@@ -94,3 +100,9 @@ docker-compose up
 ![](resources/images/containers.png)
 ![](resources/images/app.png)
 
+#### Minikube
+Create the kubernetes resources
+```shell
+kubectl apply -f kubernetes
+```
+TODO...
