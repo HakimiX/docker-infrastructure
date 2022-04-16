@@ -3,6 +3,12 @@
 This is an over the top complicated solution for calculating a Fibonacci number.
 The purpose is to implement a multi container deployment.
 
+Two different solutions have been implemented for deploying the application:
+1. Using docker and AWS Elastic Beanstalk.
+   _(docker-compose for local development)_
+2. Using Kuberntes and Google Cloud.
+   _(minikube or docker-desktop for local development)_
+
 * [Technologies](#technologies)
 * [Overview](#overview)
 * [Flow](#flow)
@@ -24,7 +30,9 @@ The purpose is to implement a multi container deployment.
 * Postgres
 * Terraform
 * Travis CI
+* Kubernetes
 * AWS
+* Google Cloud
 
 ### Overview
 ![](resources/images/overview.png)
@@ -83,7 +91,7 @@ work in progress...
 
 ![](resources/images/ci-cd.png)
 
-Travis CI will automatically pull the repository and run the CI/CD pipeline whenver code is merged to master. 
+Travis CI will automatically pull the repository and runs the CI/CD pipeline whenver code is merged to master. 
 ![](resources/images/travis-ci.png)
 
 ### AWS Elastic Beanstalk
