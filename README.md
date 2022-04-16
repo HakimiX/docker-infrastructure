@@ -90,6 +90,8 @@ Travis CI will automatically pull the repository and runs the CI/CD pipeline whe
 ![](resources/images/travis-ci.png)
 
 ### AWS Elastic Beanstalk
+AWS Elastic Beanstalk is chosen because it is the fastest and simplest way to deploy an application on AWS.
+Elastic Beanstalk provisions and operates the infrastructure and manages the application for you.
 ![](resources/images/deployment.png)
 
 ### Local Development using Docker Compose
