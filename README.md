@@ -3,38 +3,30 @@
 This is an over the top complicated solution for calculating a Fibonacci number.
 The purpose is to implement a multi container deployment.
 
-Two different solutions have been implemented for deploying the application
-and local development:
-1. Using docker and AWS Elastic Beanstalk.
+Two different solutions have been implemented for local development and deploying 
+the application:
+1. Using Docker and AWS Elastic Beanstalk.
    _(docker-compose for local development)_
 2. Using Kubernetes and Google Cloud.
    _(minikube or docker-desktop for local development)_
 
-* [Technologies](#technologies)
-* [Overview](#overview)
-* [Flow](#flow)
-* [Nginx](#nginx)
-* [Terraform](#terraform)
-* [Travis CI](#travis-ci)
-* [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
-* [Docker](#docker)
-  * [Docker Compose](#docker-compose)
-* [Kubernetes](#kubernetes)
-  * [Local Developmet](#local-development)
+**Technologies**: Docker, React, Node.js, Nginx, Redis, Postgres, Terraform, Travis CI, Kubernetes
+AWS, Google Cloud. 
 
-### Technologies
-* Docker
-* React
-* Nodejs
-* Nginx
-* Redis
-* Postgres
-* Terraform
-* Travis CI
-* Kubernetes
-* AWS
-* Google Cloud
+* [Application](#application)
+  * [Overview](#overview)
+  * [Flow](#flow)
+* [Docker and AWS Elatic Beanstalk](#docker-and-aws-elatic-beanstalk)
+  * [Nginx](#nginx)
+  * [Terraform](#terraform)
+  * [Travis CI](#travis-ci)
+  * [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
+  * [Local Developemt](#local-development-using-docker-compose)
+* [Kubernetes and Google Cloud](#kubernetes-and-google-cloud)
+  * [Ingress-Nginx on Google Cloud](#ingress-nginx-on-google-cloud)
+  * [Local Development using Docker Desktop](#local-development-using-docker-desktop)
 
+## Application
 ### Overview
 ![](resources/images/overview.png)
 
@@ -49,6 +41,8 @@ and local development:
 5. The Worker watches Redis for new indices that show up. Anytime a new index shows up in Redis,
    the Worker is going to pull that value out and calculate the Fibonacci value for it and store the calculated
    value back in Redis.
+
+## Docker and AWS Elatic Beanstalk
 
 ### Nginx
 The nginx server is going to look at the incomming requests and decide which
@@ -80,7 +74,7 @@ terraform apply
 ```
 work in progress...
 
-## Travis CI 
+### Travis CI 
 1. Push code to GitHub.
 2. Travis CI
    * Automatically pull the repository. 
@@ -98,13 +92,13 @@ Travis CI will automatically pull the repository and runs the CI/CD pipeline whe
 ### AWS Elastic Beanstalk
 ![](resources/images/deployment.png)
 
-### Docker 
-#### Docker Compose
+### Local Development using Docker Compose
 Start the containers 
 ```shell
 docker-compose up
 ```
-![](resources/images/containers.png)
+
+![](resources/images/docker-compose-containers.png)
 ![](resources/images/app.png)
 
 Building and pushing images locally
@@ -116,45 +110,32 @@ docker build -t hakimixx/docker-infra-client:v1 client
 docker push hakimixx/docker-infra-client:v1
 ```
 
-### Kubernetes
+## Kubernetes and Google Cloud
 
-#### Ingress-Nginx on Google Cloud
+### Ingress-Nginx on Google Cloud
 ![](resources/images/k8s-overview.png)
 
-#### Deployment 
-todo...
-
-#### Local Development
-Local development using Minikube or Docker Desktop 
+### Local Development using Docker Desktop
 ```shell
 # Change context 
-kubectx docker-desktop # or minikube
+kubectx docker-desktop
 
 # Apply kubernetes resources 
 ./scripts/apply-resources-sh
 
-# Create secrets
-kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
+# Create secrets (specify a better password)
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres 
 
 # Verify that the resources are created successfully
 kubectl get all
 
-# Navigate to the nodePort (defined in the service)
-http://localhost:31515
+# Navigate to the client (ingress-nginx listens on port 80) 
+http://localhost:80
 
-# For minikube you have to get the minikube ip first
-minikube ip 
-
-# Navigate to the nodePort
-http://194.148.19.2:31515
-```
-
-Deleting resources:
-```shell
+# Deleting resources
 ./scripts/delete-resources.sh
 ```
-
-![](resources/images/cluster.png)
+![](resources/images/local-cluster.png)
 
 Updating deployment image: 
 ```shell
@@ -176,3 +157,5 @@ kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
 # Decode secret
 echo <secret-value> | base64 --decode
 ```
+
+### Deploying to Google Cloud
