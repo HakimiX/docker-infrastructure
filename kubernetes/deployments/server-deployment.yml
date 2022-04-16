@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: hakimixx/docker-infra-server
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: '5000'
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PGUSER
+              value: postgres # default
+            - name: PGHOST
+              value: postgres-cluster-ip-service # name of service here
+            - name: PGPORT
+              value: '5432' # default
+            - name: PGDATABASE
+              value: postgres # default
+            - name: PGPASSWORD
+              valueFrom:  # getting values from secrets
+                secretKeyRef:
+                  name: pgpassword # name of secret
+                  key: PGPASSWORD # secret key (secret is stored as key-value-pair)

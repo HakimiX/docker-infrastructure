@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: redis-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: web
+      component: redis
   template:
     metadata:
       labels:
-        component: web
+        component: redis
     spec:
       containers:
-        - name: client
-          image: hakimixx/docker-infra-client
+        - name: redis
+          image: redis
           ports:
-            - containerPort: 3000
+            - containerPort: 6379

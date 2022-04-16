@@ -109,17 +109,17 @@ docker push hakimixx/docker-infra-client:v1
 
 ### Kubernetes
 
-#### Overview
+#### Ingress-Nginx on Google Cloud
 ![](resources/images/k8s-overview.png)
 
 #### Deployment 
-AWS EKS
+todo...
 
 #### Local Development
 Local development using Minikube or Docker Desktop 
 ```shell
-# Change context (or minikube)
-kubectx docker-desktop
+# Change context 
+kubectx docker-desktop # or minikube
 
 # Apply kubernetes resources
 kubectl apply -f kubernetes
@@ -146,4 +146,16 @@ kubectl set image <object-type>/<object-name> <container-name>=<new image to use
 
 # Example
 kubectl set image deployment/client-deployment client=hakimixx/docker-infra-client:v1
+```
+
+Creating secrets (base64 encoded):
+```shell
+# Command
+kubectl create secret <type> <secret-name> --from-literal <key-value-pair>
+
+# Example 
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
+
+# Decode secret
+echo <secret-value> | base64 --decode
 ```
