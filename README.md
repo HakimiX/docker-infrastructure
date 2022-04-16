@@ -3,10 +3,11 @@
 This is an over the top complicated solution for calculating a Fibonacci number.
 The purpose is to implement a multi container deployment.
 
-Two different solutions have been implemented for deploying the application:
+Two different solutions have been implemented for deploying the application
+and local development:
 1. Using docker and AWS Elastic Beanstalk.
    _(docker-compose for local development)_
-2. Using Kuberntes and Google Cloud.
+2. Using Kubernetes and Google Cloud.
    _(minikube or docker-desktop for local development)_
 
 * [Technologies](#technologies)
