@@ -130,10 +130,8 @@ Local development using Minikube or Docker Desktop
 # Change context 
 kubectx docker-desktop # or minikube
 
-# Apply kubernetes resources (or simply run the deploy-kubernetes.sh script)
-kubectl apply -f kubernetes/deployments
-kubectl apply -f kubernetes/services
-kubectl apply -f kubernetes/persistent-volumes
+# Apply kubernetes resources 
+./scripts/apply-resources-sh
 
 # Create secrets
 kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
@@ -149,6 +147,11 @@ minikube ip
 
 # Navigate to the nodePort
 http://194.148.19.2:31515
+```
+
+Deleting resources:
+```shell
+./scripts/delete-resources.sh
 ```
 
 ![](resources/images/cluster.png)
