@@ -18,13 +18,14 @@ AWS, Google Cloud.
   * [Flow](#flow)
 * [Docker and AWS Elatic Beanstalk](#docker-and-aws-elatic-beanstalk)
   * [Nginx](#nginx)
+  * [Local Developemt](#local-development-using-docker-compose)
   * [Terraform](#terraform)
   * [Travis CI](#travis-ci)
-  * [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
-  * [Local Developemt](#local-development-using-docker-compose)
+  * [Deploying to AWS Elastic Beanstalk](#deploying-to-aws-elastic-beanstalk)
 * [Kubernetes and Google Cloud](#kubernetes-and-google-cloud)
   * [Ingress-Nginx on Google Cloud](#ingress-nginx-on-google-cloud)
   * [Local Development using Docker Desktop](#local-development-using-docker-desktop)
+  * [Deploying to Google Cloud](#deploying-to-google-cloud)
 
 ## Application
 ### Overview
@@ -54,6 +55,24 @@ The React server and Express server is "behind" the nginx server and cannot be a
 unless you go through the nginx server (nginx refers to these as upstream servers).
 
 ![](resources/images/nginx-routing.png)
+
+### Local Development using Docker Compose
+Start the containers
+```shell
+docker-compose up
+```
+
+![](resources/images/docker-compose-containers.png)
+![](resources/images/app.png)
+
+Building and pushing images locally
+```shell
+# Build image 
+docker build -t hakimixx/docker-infra-client:v1 client
+
+# Push image
+docker push hakimixx/docker-infra-client:v1
+```
 
 ### Terraform 
 Terraform allows us to manage infrastructure as code (IaC) rather tham using a graphical
@@ -89,28 +108,10 @@ _work in progress..._
 Travis CI will automatically pull the repository and runs the CI/CD pipeline whenver code is merged to master. 
 ![](resources/images/travis-ci.png)
 
-### AWS Elastic Beanstalk
+### Deploying to AWS Elastic Beanstalk
 AWS Elastic Beanstalk is chosen because it is the fastest and simplest way to deploy an application on AWS.
 Elastic Beanstalk provisions and operates the infrastructure and manages the application for you.
 ![](resources/images/deployment.png)
-
-### Local Development using Docker Compose
-Start the containers 
-```shell
-docker-compose up
-```
-
-![](resources/images/docker-compose-containers.png)
-![](resources/images/app.png)
-
-Building and pushing images locally
-```shell
-# Build image 
-docker build -t hakimixx/docker-infra-client:v1 client
-
-# Push image
-docker push hakimixx/docker-infra-client:v1
-```
 
 ## Kubernetes and Google Cloud
 
