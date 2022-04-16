@@ -72,7 +72,7 @@ terraform plan
 # Execute the changes (create, update or destroy resources)
 terraform apply
 ```
-work in progress...
+_work in progress..._
 
 ### Travis CI 
 1. Push code to GitHub.
