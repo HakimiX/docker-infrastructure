@@ -224,6 +224,10 @@ Configuration:
 ![](resources/images/kubernetes-ci-cd.png)
 ![](resources/images/deployed.png)
 
+Navigate to the ingress-nginx-controller IP (external load balancer) to see the 
+deployed application in action
+![](resources/images/ingress-controll-er-ip.png) 
+
 ### Configure Google Cloud Shell
 The Google Cloud Shell needs the following configurations (same as travis `before_install` steps):
 ```shell
