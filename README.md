@@ -219,7 +219,10 @@ Configuration:
 8. Apply all the Kubernetes resources. 
 9. Imperatively set the latest images on each deployment.
 
-:warning: secrets are created manually in the Google Cloud Shell.
+:warning: Secrets are created manually in the Google Cloud Shell.
+
+![](resources/images/kubernetes-ci-cd.png)
+![](resources/images/deployed.png)
 
 ### Configure Google Cloud Shell
 The Google Cloud Shell needs the following configurations (same as travis `before_install` steps):
