@@ -23,3 +23,16 @@ after_success:
   - docker push hakimixx/docker-infra-nginx
   - docker push hakimixx/docker-infra-server
   - docker push hakimixx/docker-infra-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-1
+  app: docker-infrastructure
+  env: docker-infrastructure-env
+  bucket_name: elasticbeanstalk-eu-west-1-305477839034
+  bucket_path: docker-infrastructure
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY # stored as env in travis
+  secret_access_key:
+    secure: $AWS_SECRET_KEY # stored as env in travis

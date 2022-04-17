@@ -188,7 +188,7 @@ $ "Successfully logged in as HakimiX!"
 # Encrypt the service-account.json file 
 travis encrypt-file service-account.json -r hakimix/docker-infrastructure --com
 
-$ "encrypting service-account.json for hakimix/docker-infrastructure"
+$ "encrypting service-account.json for Hakimix/docker-infrastructure"
 $ "storing result as service-account.json.enc"
 $ "storing secure env variables for decryption"
 ```
@@ -218,6 +218,26 @@ Configuration:
 7. Build all images, tag, and push to Docker Hub. 
 8. Apply all the Kubernetes resources. 
 9. Imperatively set the latest images on each deployment.
+
+:warning: secrets are created manually in the Google Cloud Shell
+The Google Cloud Shell needs the following configurations (same as travis `before_install` steps): 
+```shell
+gcloud config set project docker-infrastructure-347509 # set project ID
+$ "Updated property [core/project]"
+
+gcloud config set compute/zone europe-west1-c # set region
+$ "Updated property [compute/zone]"
+
+gcloud container clusters get-credentials docker-infrastructure # set cluster name
+$ "Fetching cluster endpoint and auth data."
+$ "kubeconfig entry generated for docker-infrastructure."
+```
+![](resources/images/google-cloud-shell.png)
+
+Create the secrets inside the Google Cloud Shell
+```shell
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
+```
 
 ## Sources
 

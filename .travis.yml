@@ -3,6 +3,10 @@
 sudo: required
 service:
   - docker
+env:
+  global:
+    - GIT_SHA=$(git rev-parse HEAD) # get current commit SHA and store as env
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1 # disable prompts (user input)
 before_install:
   # Travis CI encrypted service account file
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
@@ -11,3 +15,17 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc # look in default install directory and source the file
   - gcloud components update kubectl # install and update kubectl
   - gcloud auth activate-service-account --key-file service-account.json # Auth
+  - gcloud config set project docker-infrastructure-347509 # Google Cloud project ID
+  - gcloud config set compute/zone europe-west1-c # Google Cloud Region
+  - gcloud container clusters get-credentials docker-infrastructure # set Google Cloud cluster name
+  # Docker Login
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker build -t hakimixx/client-test -f ./client/Dockerfile.dev ./client  # build "test" version of image (using dev dockerfile)
+script:
+  - docker run -e CI=true hakimixx/client-test npm test # CI=true to exit tests once done
+
+deploy:
+  provider: script # custom script for deploying kubernetes (Travis doesn't have build in functionality for this)
+  script: bash ./deploy.sh
+  on:
+    branch: master
