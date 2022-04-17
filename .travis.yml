@@ -1,24 +1,13 @@
+# Kubernetes and Google Cloud
+
 sudo: required
-services:
+service:
   - docker
-
-# build test image
 before_install:
-  - docker build -t hakimixx/react-test -f ./client/Dockerfile.dev ./client
-
-script:
-  - docker run -e CI=true hakimixx/react-test npm test
-
-# build PROD images
-after_success:
-  - docker build -t hakimixx/docker-infra-client ./client
-  - docker build -t hakimixx/docker-infra-nginx ./nginx
-  - docker build -t hakimixx/docker-infra-server ./server
-  - docker build -t hakimixx/docker-infra-worker ./worker
-  # Login to Docker Hub (using Travis CI environment variables)
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Push the images to Docker Hub
-  - docker push hakimixx/docker-infra-client
-  - docker push hakimixx/docker-infra-nginx
-  - docker push hakimixx/docker-infra-server
-  - docker push hakimixx/docker-infra-worker
+  # Travis CI encrypted service account file
+  - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+  # Google Cloud SDK
+  - curl https://sdk.cloud.google.com | bash > /dev/null; # download and install Google Cloud SDK
+  - source $HOME/google-cloud-sdk/path.bash.inc # look in default install directory and source the file
+  - gcloud components update kubectl # install and update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json # Auth

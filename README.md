@@ -108,6 +108,14 @@ _work in progress..._
 Travis CI will automatically pull the repository and runs the CI/CD pipeline whenver code is merged to master. 
 ![](resources/images/travis-ci.png)
 
+Travis CI for the Docker and AWS Elastic Beanstalk solution is currently disabled:
+```shell
+disabled.travis.yml
+
+# remove 'disabled' to enable 
+.travis.yml 
+```
+
 ### Deploying to AWS Elastic Beanstalk
 AWS Elastic Beanstalk is chosen because it is the fastest and simplest way to deploy an application on AWS.
 Elastic Beanstalk provisions and operates the infrastructure and manages the application for you.
@@ -162,3 +170,56 @@ echo <secret-value> | base64 --decode
 ```
 
 ### Deploying to Google Cloud
+The infrastructure (kubernetes configuration) is currenlty set up manually through the 
+Google Cloud Console. _(should be implemented with Terraform)_
+
+#### Google Cloud Service Account
+The Google Cloud Service Account credentials (JSON file) are encrypted and uploaded to the 
+Travis CI account using Travis CI CLI. 
+```shell
+# Ruby is required to install Travis CI CLI
+gem install travis
+
+# Login to Travis CI (requires a Github token)
+travis login --github-token <github-token> --com
+
+$ "Successfully logged in as HakimiX!"
+
+# Encrypt the service-account.json file 
+travis encrypt-file service-account.json -r hakimix/docker-infrastructure --com
+
+$ "encrypting service-account.json for hakimix/docker-infrastructure"
+$ "storing result as service-account.json.enc"
+$ "storing secure env variables for decryption"
+```
+Alternative way of installing Travis CI CLI using a Docker image:
+```shell
+# Navigate to project directory (or dir that contains the service-account JSON file)
+cd docker-infrastructure 
+
+# Run a docker image with a volume (project dir) and ruby installed
+docker run -it -v $(pwd):/app ruby:2.4 sh
+
+# Install Travis CI CLI using gem
+gem install travis
+
+# Copy the service-account.json file into the project dir, which will automatically 
+# be mounted into the /app dir inside the container 
+```
+
+#### Travis CI 
+Configuration: 
+1. Install Google Cloud SDK CLI.
+2. Configure the SDK with the Google Cloud auth information.
+3. Login to Docker CLI.
+4. Build the "test" version of application (client, server, worker).
+5. Run tests. 
+6. Deploy the newest images. 
+7. Build all images, tag, and push to Docker Hub. 
+8. Apply all the Kubernetes resources. 
+9. Imperatively set the latest images on each deployment.
+
+## Sources
+
+* [Google Cloud Free Tier](https://cloud.google.com/free)
+* [Github Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
