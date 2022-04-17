@@ -11,7 +11,7 @@ the application:
    _(minikube or docker-desktop for local development)_
 
 **Technologies**: Docker, React, Node.js, Nginx, Redis, Postgres, Terraform, Travis CI, Kubernetes
-AWS, Google Cloud. 
+Helm, AWS, Google Cloud. 
 
 * [Application](#application)
   * [Overview](#overview)
@@ -207,7 +207,7 @@ gem install travis
 # be mounted into the /app dir inside the container 
 ```
 
-#### Travis CI 
+#### Travis CI (Google Cloud)
 Configuration: 
 1. Install Google Cloud SDK CLI.
 2. Configure the SDK with the Google Cloud auth information.
@@ -219,8 +219,10 @@ Configuration:
 8. Apply all the Kubernetes resources. 
 9. Imperatively set the latest images on each deployment.
 
-:warning: secrets are created manually in the Google Cloud Shell
-The Google Cloud Shell needs the following configurations (same as travis `before_install` steps): 
+:warning: secrets are created manually in the Google Cloud Shell.
+
+### Configure Google Cloud Shell
+The Google Cloud Shell needs the following configurations (same as travis `before_install` steps):
 ```shell
 gcloud config set project docker-infrastructure-347509 # set project ID
 $ "Updated property [core/project]"
@@ -237,6 +239,27 @@ $ "kubeconfig entry generated for docker-infrastructure."
 Create the secrets inside the Google Cloud Shell
 ```shell
 kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
+```
+
+#### Install Helm v3
+In the Google Cloud Shell run the following:
+```shell
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+$ "Preparing to install helm into /usr/local/bin"
+$ "helm installed into /usr/local/bin/helm"
+```
+
+#### Install Ingress-Nginx
+In the Google Cloud Shell run the following:
+```shell
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+$ "ingress-nginx has been added to your repositories"
+
+helm install my-release ingress-nginx/ingress-nginx
+$ "The ingress-nginx controller has been installed."
 ```
 
 ## Sources
