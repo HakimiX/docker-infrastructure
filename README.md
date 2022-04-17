@@ -242,6 +242,9 @@ kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
 ```
 
 #### Install Helm v3
+Helm helps you manage kubernetes packages. Helm charts help you define, install, and 
+upgrade kubernetes applications. 
+
 In the Google Cloud Shell run the following:
 ```shell
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
@@ -253,6 +256,9 @@ $ "helm installed into /usr/local/bin/helm"
 ```
 
 #### Install Ingress-Nginx
+The Nginx Ingress controller can be installed via Helm using the chart "stable/nginx-ingress" 
+from the official charts repository.
+
 In the Google Cloud Shell run the following:
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -265,4 +271,4 @@ $ "The ingress-nginx controller has been installed."
 ## Sources
 
 * [Google Cloud Free Tier](https://cloud.google.com/free)
-* [Github Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+* [GitHub Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
