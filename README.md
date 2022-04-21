@@ -43,7 +43,7 @@ Helm, AWS, Google Cloud.
    the Worker is going to pull that value out and calculate the Fibonacci value for it and store the calculated
    value back in Redis.
 
-## Docker and AWS Elatic Beanstalk
+## Docker and AWS Elastic Beanstalk
 
 ### Nginx
 The nginx server is going to look at the incomming requests and decide which
