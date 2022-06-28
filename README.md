@@ -74,6 +74,17 @@ docker build -t hakimixx/docker-infra-client:v1 client
 docker push hakimixx/docker-infra-client:v1
 ```
 
+### Minikube
+To run the entire application with minikube on mac use: 
+```shell
+make start
+```
+
+To clean up run:
+```shell
+make clean
+```
+
 ### Terraform 
 Terraform allows us to manage infrastructure as code (IaC) rather than using a graphical
 user interface. It allows us to manage the infrastructure in a safe, consistent and 
