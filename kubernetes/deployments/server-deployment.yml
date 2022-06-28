@@ -17,7 +17,7 @@ spec:
           image: nginx-web-app/docker-infra-server:latest
           ports:
             - containerPort: 5000
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           env:
             - name: PORT
               value: '5000'

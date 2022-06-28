@@ -21,5 +21,12 @@ done
 cd $CURRENT_PATH
 
 ./scripts/apply-resources.sh
+
+# Resetting values changed.
+for key in ${!FILES[@]}; do
+    sed -i "" "/^\([[:space:]]*imagePullPolicy: \).*/s//\1Always/" ${FILES[${key}]}
+done
+
+cd $CURRENT_PATH
 # create tunnel at the end
 minikube tunnel

@@ -20,6 +20,6 @@ spec:
               value: redis-cluster-ip-service # name of service here
             - name: REDIS_PORT
               value: '6379' # default redis port
-          imagePullPolicy: Never
+          imagePullPolicy: Always
 
 
