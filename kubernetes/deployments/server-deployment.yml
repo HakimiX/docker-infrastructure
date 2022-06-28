@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: nginx-web-app/docker-infra-server:latest
+          image: hakimixx/docker-infra-server:latest
           ports:
             - containerPort: 5000
           imagePullPolicy: Always
