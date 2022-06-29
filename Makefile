@@ -1,3 +1,7 @@
+build: 
+	chmod +x pre-run.sh
+	./pre-run.sh first_deploy
+
 start:
 	chmod +x pre-run.sh
 	./pre-run.sh
