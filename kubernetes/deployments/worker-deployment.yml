@@ -14,11 +14,12 @@ spec:
     spec:
       containers:
         - name: worker
-          image: hakimixx/docker-infra-worker
+          image: hakimixx/docker-infra-worker:latest
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service # name of service here
             - name: REDIS_PORT
               value: '6379' # default redis port
+          imagePullPolicy: Always
 
 

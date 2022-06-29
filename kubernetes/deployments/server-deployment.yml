@@ -14,9 +14,10 @@ spec:
     spec:
       containers:
         - name: server
-          image: hakimixx/docker-infra-server
+          image: hakimixx/docker-infra-server:latest
           ports:
             - containerPort: 5000
+          imagePullPolicy: Always
           env:
             - name: PORT
               value: '5000'
@@ -37,3 +38,4 @@ spec:
                 secretKeyRef:
                   name: pgpassword # name of secret
                   key: PGPASSWORD # secret key (secret is stored as key-value-pair)
+              
